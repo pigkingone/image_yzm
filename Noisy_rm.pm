@@ -31,6 +31,8 @@ sub remove_noisy {
 
 	}
 =cut}
+	
+
 	foreach my $pix_h (keys %$ref_hash_inds_h) {
 		$ref_pix->[$pix_h]=1;
 	}
@@ -60,16 +62,11 @@ sub remove_noisy_height {
 			else{
 				$count=0;
 			}
-			#say $pix if $pix>0;
-			#say HAND "count:$count,noisy_h:$noisy_h,pix:$pix,tmp_y_change:$tmp_y_change";
 			if($last_count>0 && $last_count<=$noisy_h && $pix==1 && ($last_pix==1 || $last_pix==-1 || $last_pix==-1 || $last_pix==1) && $tmp_y_change==0)
 			{
 				for (my $c = $last_count; $c > 0; $c--) {
 					my $ind=($y-$c)*$w+$x;
-					#$ref_pix->[$ind]=1;
 					$hash_ind{$ind}=1;
-					#say HAND "ind>$ind";
-					#say HAND "x,y,c>$x,$y,$c";
 				}
 
 			}	
@@ -96,23 +93,20 @@ sub remove_noisy_width{
 		$count=0;
 		for (my $x = 0; $x < $w; $x++) {
 			my $pix=$ref_pix->[$x*$h+$y];
+
 			$change=0 if $x==0;
+
 			if($pix==0 && $change==0 ){
 				$count++;
 			}
 			else{
 				$count=0;
 			}
-			#say $pix if $pix>0;
-			#say HAND "count:$count,noisy_h:$noisy_w,pix:$pix,tmp_y_change:$change";
 			if($last_count>0 && $last_count<=$noisy_w&&$pix==1&& $change==0)
 			{
 				for (my $c = $last_count; $c > 0; $c--) {
 					my $ind=($x-$c)*$h+$y;
-					#$ref_pix->[$ind]=1;
 					$hash_ind{$ind}=1;
-					#say HAND "ind>$ind";
-					#say HAND "x,y,c>$x,$y,$c";
 				}
 			}	
 

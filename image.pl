@@ -22,7 +22,7 @@ close HAND;#for log
 
 
 
-#===============================sub func========================
+#-------------------------------sub func------------------------
 sub MAIN{
 
 	#generate a arry for all of the pic
