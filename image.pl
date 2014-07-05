@@ -8,7 +8,7 @@ use Data::Dumper;
 use Image::Magick;
 use Picture_parse qw/convert_to_2 draw get_pix_gray/;	#get attribute from original Picture to gray or 2-value Picture
 use Hilditch qw/hilditch/;  #thin the pic fram
-use Noisy_rm qw/remove_noisy/; #remove the noise from pic
+use Noisy_rm qw/remove_noisy_width/; #remove the noise from pic
 
 
 
@@ -66,7 +66,7 @@ sub MAIN{
 		$tmp=$image->Clone();
 		my $ref_pixs_2=&convert_to_2($ref_pixs,$key);
 		#@$ref_pixs_2=map{ if ($_==1) { 0; } else { if ($_==0) { 1; } } }@$ref_pixs_2;
-		&Noisy_rm::remove_noisy($ref_pixs_2,$pic_size{h},$pic_size{w},2,-1);
+		&Noisy_rm::remove_noisy_width($ref_pixs_2,$pic_size{h},$pic_size{w},2,-1);
 		#&hilditch($ref_pixs_2,$pic_size{h},$pic_size{w});
 		#@$ref_pixs_2=map{ if ($_==1) { 0; } else { if ($_==0) { 1; } } }@$ref_pixs_2;
 
